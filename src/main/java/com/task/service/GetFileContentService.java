@@ -7,8 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 
 @Service
 public class GetFileContentService {
@@ -32,7 +34,7 @@ public class GetFileContentService {
             reader.lines().forEach(x -> tokenModel.put(x, "MALE"));
             reader.close();
             return ResponseEntity.ok(tokenModel);
-        } catch (IOException e) {
+        } catch (UncheckedIOException | IOException e) {
             logger.error(STREAM_EXCEPTION_LOGGER, e.getMessage());
             throw new ServiceOperationException(STREAM_EXCEPTION + e.getMessage());
         }
