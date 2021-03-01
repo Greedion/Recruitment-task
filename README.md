@@ -8,7 +8,7 @@
 - Go to `pom.xml` in `parrent` directory. If needed change variable`<path.to.bash>` to your bash (with access to maven environment variables) .
 #### From console
 - Run command  `mvn validate`.
-### From Intelij IDEA
+#### From Intelij IDEA
 - Go to `Edit Run/Debug configurations` dialog.
 - Click `edit configurations`.
 - Click `Add New Configuration`.
