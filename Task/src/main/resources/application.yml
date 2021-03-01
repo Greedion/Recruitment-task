@@ -1,0 +1,15 @@
+spring:
+  main:
+    banner-mode: off
+server:
+  error:
+    include-stacktrace: never
+
+
+path:
+  java:
+    female: female.csv
+    male: male.csv
+
+
+
