@@ -20,7 +20,7 @@ public class Algorithm {
     }
 
     private GenderAnswer checkGenderForSingleMatch(String match){
-        checkMatch(match);
+        checkWhetherNull(match);
         BufferedReader reader = dataAccessFactory.streamFactory(Gender.FEMALE);
         try {
         boolean isFemale = reader.lines()
@@ -48,14 +48,14 @@ public class Algorithm {
     }
 
     public GenderAnswer variantOne(String match){
-        checkMatch(match);
+        checkWhetherNull(match);
         StringTokenizer stringTokenizer = new StringTokenizer(match);
         String firstToken = stringTokenizer.nextToken();
         return checkGenderForSingleMatch(firstToken);
     }
 
     public GenderAnswer variantTwo(String match){
-        checkMatch(match);
+        checkWhetherNull(match);
         int male = 0;
         int female = 0;
         StringTokenizer stringTokenizer = new StringTokenizer(match);
@@ -77,7 +77,7 @@ public class Algorithm {
         }
     }
 
-    private void checkMatch(final String match) {
+    private void checkWhetherNull(final String match) {
         if(match == null){
             logger.error(MATCH_NULL_EXCEPTION);
             throw new ServiceOperationException(MATCH_NULL_EXCEPTION);
