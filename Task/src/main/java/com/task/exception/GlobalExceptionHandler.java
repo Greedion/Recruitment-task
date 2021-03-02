@@ -30,7 +30,7 @@ class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             errors.add(error.getObjectName() + ": " + error.getDefaultMessage());
         }
         ApiError apiError =
-                new ApiError(HttpStatus.BAD_REQUEST, "Validation Failed.", errors);
+                new ApiError(HttpStatus.BAD_REQUEST, ExceptionArchive.GEH_VALIDATION_FAILED, errors);
         return handleExceptionInternal(
                 ex, apiError, headers, apiError.getStatus(), request);
     }

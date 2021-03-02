@@ -1,17 +1,10 @@
-package com.task.service;
+package logic;
 
-
-import com.task.dataaccessobject.DataAccessFactory;
-import logic.Algorithm;
-import logic.Gender;
-import logic.GenderAnswer;
-import logic.ServiceOperationException;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.io.*;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AlgorithmTest {
 
@@ -23,9 +16,9 @@ class AlgorithmTest {
         Algorithm algorithm = new Algorithm(dataAccessMock);
         String match = null;
         //when
-        var exception = catchThrowable(() -> algorithm.variantOne(match));
+        var exception = Assertions.catchThrowable(() -> algorithm.variantOne(match));
         //then
-        assertThat(exception)
+        Assertions.assertThat(exception)
                 .isInstanceOf(ServiceOperationException.class)
                 .hasMessageContaining("Match cannot be null");
     }
@@ -38,10 +31,10 @@ class AlgorithmTest {
         Algorithm algorithm = new Algorithm(dataAccessMock);
 
         //when
-        var exception = catchThrowable(() -> algorithm.variantTwo(null));
+        var exception = Assertions.catchThrowable(() -> algorithm.variantTwo(null));
 
         //then
-        assertThat(exception)
+        Assertions.assertThat(exception)
                 .isInstanceOf(ServiceOperationException.class)
                 .hasMessageContaining("Match cannot be null");
     }
@@ -211,9 +204,9 @@ class AlgorithmTest {
         DataAccessFactory dataAccessMock = getDataAccessFactoryMockWithClosedStream();
         Algorithm algorithm = new Algorithm(dataAccessMock);
         //when
-        var exception = catchThrowable(() -> algorithm.variantOne("foo"));
+        var exception = Assertions.catchThrowable(() -> algorithm.variantOne("foo"));
         //then
-        assertThat(exception)
+        Assertions.assertThat(exception)
                 .isInstanceOf(ServiceOperationException.class)
                 .hasMessageContaining("Stream close exception");
     }
@@ -225,17 +218,17 @@ class AlgorithmTest {
         DataAccessFactory dataAccessMock = getDataAccessFactoryMockWithClosedStream();
         Algorithm algorithm = new Algorithm(dataAccessMock);
         //when
-        var exception = catchThrowable(() -> algorithm.variantTwo("foo"));
+        var exception = Assertions.catchThrowable(() -> algorithm.variantTwo("foo"));
         //then
-        assertThat(exception)
+        Assertions.assertThat(exception)
                 .isInstanceOf(ServiceOperationException.class)
                 .hasMessageContaining("Stream close exception");
     }
 
 
     DataAccessFactory getDataAccessFactoryMockWithClosedStream() {
-        return new DataAccessFactory(null) {
-            final private static String FEMALE = "src/test/java/com/task/resources/female.csv";
+        return new DataAccessFactory() {
+            final private static String FEMALE = "src/test/java/resources/female.csv";
             // Try with resources should close stream
             @Override
             public BufferedReader streamFactory(Gender gender) {
@@ -250,9 +243,9 @@ class AlgorithmTest {
     }
 
     DataAccessFactory getDataAccessFactoryMock() {
-        return new DataAccessFactory(null) {
-            final private static String FEMALE = "src/test/java/com/task/resources/female.csv";
-            final private static String MALE = "src/test/java/com/task/resources/male.csv";
+        return new DataAccessFactory() {
+            final private static String FEMALE = "src/test/java/resources/female.csv";
+            final private static String MALE = "src/test/java/resources/male.csv";
 
             @Override
             public BufferedReader streamFactory(Gender gender) {
