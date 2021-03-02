@@ -13,7 +13,7 @@ import java.io.BufferedReader;
 @Repository
 public class DataAccessFactory implements DataAccessInterface {
 
-    final private DataAccess dataAccess;
+    private final DataAccess dataAccess;
     private final Logger logger = LoggerFactory.getLogger(DataAccessFactory.class);
     private ConfigurationPropertiesValue configValue;
 
