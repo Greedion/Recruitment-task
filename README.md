@@ -6,6 +6,7 @@
 ### Install algorithm in local repository and build task package
 - Go to `pom.xml` in `parrent` directory. If needed change variable`<path.to.bash>` to your bash (with access to maven environment variables) .
 #### From console
+- Go to `parrent` directory.
 - Run command  `mvn validate`.
 #### From Intelij IDEA
 - Go to `Edit Run/Debug configurations` dialog.
