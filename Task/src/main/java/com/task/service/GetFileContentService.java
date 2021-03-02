@@ -1,5 +1,6 @@
 package com.task.service;
 
+import com.task.exception.ExceptionArchive;
 import com.task.exception.ServiceOperationException;
 import com.task.model.TokenModel;
 import logic.DataAccessInterface;
@@ -18,8 +19,7 @@ public class GetFileContentService {
 
     private final Logger logger = LoggerFactory.getLogger(GetFileContentService.class);
     private final DataAccessInterface dataAccessFactory;
-    private final static String STREAM_EXCEPTION = "Stream close exception: ";
-    private final static String STREAM_EXCEPTION_LOGGER = "Stream close exception: {}";
+
 
     GetFileContentService(final DataAccessInterface dataAccessFactory) {
         this.dataAccessFactory = dataAccessFactory;
@@ -29,15 +29,17 @@ public class GetFileContentService {
         TokenModel tokenModel = new TokenModel();
         try {
             BufferedReader reader = dataAccessFactory.streamFactory(Gender.FEMALE);
-            reader.lines().forEach(x -> tokenModel.put(x, "FEMALE"));
+            reader.lines().parallel()
+                    .forEach(x -> tokenModel.put(x, "FEMALE"));
             reader.close();
             reader = dataAccessFactory.streamFactory(Gender.MALE);
-            reader.lines().forEach(x -> tokenModel.put(x, "MALE"));
+            reader.lines().parallel()
+                    .forEach(x -> tokenModel.put(x, "MALE"));
             reader.close();
             return ResponseEntity.ok(tokenModel);
         } catch (UncheckedIOException | IOException e) {
-            logger.error(STREAM_EXCEPTION_LOGGER, e.getMessage());
-            throw new ServiceOperationException(STREAM_EXCEPTION + e.getMessage());
+            logger.error(ExceptionArchive.GFCS_STREAM_EXCEPTION_LOGGER, e.getMessage());
+            throw new ServiceOperationException(ExceptionArchive.GFCS_STREAM_EXCEPTION + e.getMessage());
         }
     }
 }

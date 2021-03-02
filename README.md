@@ -26,3 +26,11 @@
 - Run command `docker build -f Dockerfile -t {your-app-name} . `
 - Run command `docker images` and check your image id.
 - Run command `docker run -p {your-port-outside}:8080 {your-image-id}`.
+
+
+### How to use 
+
+- GET  `127.0.0.1:8080` return of available tokens
+- POST `127.0.0.1:8080` with params (required JSON format):
+-- `match`(Accepts text with spaces)
+-- `variant` (Accepts number 1 or 2)
