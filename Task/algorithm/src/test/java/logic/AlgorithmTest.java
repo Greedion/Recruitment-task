@@ -15,9 +15,11 @@ class AlgorithmTest {
         DataAccessFactory dataAccessMock = getDataAccessFactoryMock();
         Algorithm algorithm = new Algorithm(dataAccessMock);
         String match = null;
+
         //when
         var exception = Assertions.catchThrowable(() -> algorithm.variantOne(match));
         //then
+
         Assertions.assertThat(exception)
                 .isInstanceOf(ServiceOperationException.class)
                 .hasMessageContaining("Match cannot be null");
@@ -46,8 +48,10 @@ class AlgorithmTest {
         DataAccessFactory dataAccessMock = getDataAccessFactoryMock();
         Algorithm algorithm = new Algorithm(dataAccessMock);
         String match = "Maria";
+
         //when
         var result = algorithm.variantOne(match);
+
         //then
         assertEquals(result, GenderAnswer.FEMALE);
     }
@@ -59,8 +63,10 @@ class AlgorithmTest {
         DataAccessFactory dataAccessMock = getDataAccessFactoryMock();
         Algorithm algorithm = new Algorithm(dataAccessMock);
         String match = "Jan";
+
         //when
         var result = algorithm.variantOne(match);
+
         //then
         assertEquals(result, GenderAnswer.MALE);
     }
@@ -72,8 +78,10 @@ class AlgorithmTest {
         DataAccessFactory dataAccessMock = getDataAccessFactoryMock();
         Algorithm algorithm = new Algorithm(dataAccessMock);
         String match = "FOO";
+
         //when
         var result = algorithm.variantOne(match);
+
         //then
         assertEquals(result, GenderAnswer.INCONCLUSIVE);
     }
@@ -85,8 +93,10 @@ class AlgorithmTest {
         DataAccessFactory dataAccessMock = getDataAccessFactoryMock();
         Algorithm algorithm = new Algorithm(dataAccessMock);
         String match = "Maria";
+
         //when
         var result = algorithm.variantTwo(match);
+
         //then
         assertEquals(result, GenderAnswer.FEMALE);
     }
@@ -98,8 +108,10 @@ class AlgorithmTest {
         DataAccessFactory dataAccessMock = getDataAccessFactoryMock();
         Algorithm algorithm = new Algorithm(dataAccessMock);
         String match = "Jan";
+
         //when
         var result = algorithm.variantTwo(match);
+
         //then
         assertEquals(result, GenderAnswer.MALE);
     }
@@ -203,8 +215,10 @@ class AlgorithmTest {
         //give
         DataAccessFactory dataAccessMock = getDataAccessFactoryMockWithClosedStream();
         Algorithm algorithm = new Algorithm(dataAccessMock);
+
         //when
         var exception = Assertions.catchThrowable(() -> algorithm.variantOne("foo"));
+
         //then
         Assertions.assertThat(exception)
                 .isInstanceOf(ServiceOperationException.class)
@@ -217,8 +231,10 @@ class AlgorithmTest {
         //give
         DataAccessFactory dataAccessMock = getDataAccessFactoryMockWithClosedStream();
         Algorithm algorithm = new Algorithm(dataAccessMock);
+
         //when
         var exception = Assertions.catchThrowable(() -> algorithm.variantTwo("foo"));
+
         //then
         Assertions.assertThat(exception)
                 .isInstanceOf(ServiceOperationException.class)
