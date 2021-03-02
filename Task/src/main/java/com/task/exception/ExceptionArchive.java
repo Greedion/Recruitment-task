@@ -21,4 +21,16 @@ public  class ExceptionArchive {
     public final static String GFCS_STREAM_EXCEPTION = "Stream close exception: ";
     public final static String GFCS_STREAM_EXCEPTION_LOGGER = "Stream close exception: {}";
 
+    /**
+     * DataAccess
+     */
+    public final static String DA_WRONG_FILE_PATH_EXCEPTION = "Wrong file path exception.";
+    public final static String DA_WRONG_FILE_PATH_EXCEPTION_LOGGER = "Wrong file path exception: {}";
+    public final static String DA_WRONG_FILE_PATH_EXCEPTION_WITH_ERROR_MESSAGE = "Wrong file path exception: {}";
+
+    /**
+     * DataAccessFactory
+     */
+    public final static String DAF_WRONG_FILE_PATH_EXCEPTION_LOGGER = "Wrong file path exception: {}";
+    public final static String DAF_WRONG_FILE_PATH_EXCEPTION = "Wrong file patch exception: ";
 }
