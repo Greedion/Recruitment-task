@@ -20,7 +20,6 @@ public class GetFileContentService {
     private final Logger logger = LoggerFactory.getLogger(GetFileContentService.class);
     private final DataAccessInterface dataAccessFactory;
 
-
     GetFileContentService(final DataAccessInterface dataAccessFactory) {
         this.dataAccessFactory = dataAccessFactory;
     }
